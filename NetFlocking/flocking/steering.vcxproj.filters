@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{58071a7d-cbb0-4abd-9790-6b2e658844e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{30ffa034-0511-4b02-96bb-ac319241f08f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Boids">
+      <UniqueIdentifier>{473169a8-96e1-4412-ac2e-391661ee95bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Boids">
+      <UniqueIdentifier>{fc1e3008-2ab7-4b6a-aa2f-6fcea7719c5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{a27988fb-d0a5-4250-972f-af65e8ca4292}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{c4ae7624-e121-4a43-87ce-ac08c1110b47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Input">
+      <UniqueIdentifier>{b129ae12-ccbc-4b61-b385-03d199119761}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{601306d5-fe2c-486c-95ae-5d6188b23f5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Util">
+      <UniqueIdentifier>{5cc99b4f-4289-4b5a-82e5-7867650c7737}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Util">
+      <UniqueIdentifier>{26e9e12c-34bd-4709-b2e7-b3c7b24d9569}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Event">
+      <UniqueIdentifier>{d2d8e546-6bda-4ad9-872b-293bad7a19ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Event">
+      <UniqueIdentifier>{2a084631-39e4-4c52-8998-a13c1b0ed338}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Event\Events">
+      <UniqueIdentifier>{b4445168-8446-431d-8c51-c340f34451db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Event\Events">
+      <UniqueIdentifier>{49a5e95c-9c1f-457f-b7b8-9c50224f2bbf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Boid.cpp">
+      <Filter>Source Files\Boids</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLInterface.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Flock.cpp">
+      <Filter>Source Files\Boids</Filter>
+    </ClCompile>
+    <ClCompile Include="Client_Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputInterface.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Source Files\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread.c">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedList.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangeDirectionEvent.cpp">
+      <Filter>Source Files\Event\Events</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Flock.h">
+      <Filter>Header Files\Boids</Filter>
+    </ClInclude>
+    <ClInclude Include="Boid.h">
+      <Filter>Header Files\Boids</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLInterface.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputInterface.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerDefine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Header Files\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Header Files\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="ChangeDirectionEvent.h">
+      <Filter>Header Files\Event\Events</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
