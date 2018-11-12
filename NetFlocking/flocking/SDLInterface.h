@@ -24,7 +24,7 @@
 #include "EventManager.h"
 #include "Event.h"
 
-#include "ChangeDirectionEvent.h"
+#include "MoveToEvent.h"
 
 class SDLInterface {
 private:

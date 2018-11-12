@@ -17,14 +17,14 @@
 
 #include "Event.h"
 
-class ChangeDirectionEvent : public Event {
+class MoveToEvent : public Event {
 private:
 	EVENT_TYPE mType;
 	float mDestX;
 	float mDestY;
 
 public:
-	ChangeDirectionEvent(float destX, float destY) : mType(CHANGE_DIRECTION_EVENT), mDestX(destX), mDestY(destY) {};
+	MoveToEvent(float destX, float destY) : mType(MOVE_TO_EVENT), mDestX(destX), mDestY(destY) {};
 
 	virtual void execute() override;
 };

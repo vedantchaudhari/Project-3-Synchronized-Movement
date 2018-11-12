@@ -69,7 +69,7 @@
     <ClCompile Include="LinkedList.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
-    <ClCompile Include="ChangeDirectionEvent.cpp">
+    <ClCompile Include="MoveToEvent.cpp">
       <Filter>Source Files\Event\Events</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,7 +104,7 @@
     <ClInclude Include="Thread.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
-    <ClInclude Include="ChangeDirectionEvent.h">
+    <ClInclude Include="MoveToEvent.h">
       <Filter>Header Files\Event\Events</Filter>
     </ClInclude>
   </ItemGroup>

@@ -27,6 +27,9 @@ private:
 	const Uint8* mpVKeyState;
 	int mNumKeys;
 
+	int mMouseX;
+	int mMouseY;
+
 	void onKeyDown();
 	void onKeyUp();
 

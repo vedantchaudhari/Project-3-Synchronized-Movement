@@ -15,11 +15,11 @@
 enum EVENT_TYPE {
 	INVALID_TYPE,
 
-	CHANGE_DIRECTION_EVENT,
+	MOVE_TO_EVENT,
 };
 
 const std::string EVENT_NAMES[3] = {
-	"Change Direction",
+	"Move To Event",
 };
 
 class Event {

@@ -12,7 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Boid.cpp" />
-    <ClCompile Include="ChangeDirectionEvent.cpp" />
+    <ClCompile Include="MoveToEvent.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="Flock.cpp" />
     <ClCompile Include="Client_Main.cpp" />
@@ -23,7 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Boid.h" />
-    <ClInclude Include="ChangeDirectionEvent.h" />
+    <ClInclude Include="MoveToEvent.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventManager.h" />
@@ -38,7 +38,7 @@
     <ProjectGuid>{07ED8114-0659-4424-9468-50DBBEA5882A}</ProjectGuid>
     <RootNamespace>allegrotest</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>steering</ProjectName>
+    <ProjectName>Project-3-Synchronized-Movement</ProjectName>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

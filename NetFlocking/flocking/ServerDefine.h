@@ -34,6 +34,9 @@ enum GameMessages
 #pragma pack(push, 1)
 struct ClientData
 {
+	unsigned char useTimeStamp;
+	RakNet::Time timeStamp;
+
 	int ID = SEND_CLIENTDATA;
 	Flock clientFlock;
 	RakNet::SystemAddress clientIP;

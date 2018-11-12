@@ -70,9 +70,11 @@ void InputInterface::update() {
 			case SDLK_ESCAPE:
 				SDLInterface::getInstance()->isExit = true;
 				break;
-			case SDLK_d:
-				
 			}
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			SDL_GetMouseState(&mMouseX, &mMouseY);
+			std::cout << mMouseX << " " << mMouseY << std::endl;
 			break;
 		case SDL_KEYUP:
 			onKeyUp();
@@ -82,4 +84,6 @@ void InputInterface::update() {
 			break;
 		}
 	}
+
+
 }
