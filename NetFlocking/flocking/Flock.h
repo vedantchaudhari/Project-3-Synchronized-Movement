@@ -45,8 +45,12 @@ public:
 	void update();
 	void render();
 
+	// Networking Function
 	void writeToBitstream(RakNet::BitStream& bsOut, unsigned char typeID);
 	void readFromBitstream(RakNet::Packet* packet);
+
+	// Client function
+	void predict();
 
 	/*Flock operator=(const Flock& b)
 	{

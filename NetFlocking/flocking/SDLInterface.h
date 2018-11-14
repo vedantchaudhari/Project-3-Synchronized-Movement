@@ -24,8 +24,6 @@
 #include "EventManager.h"
 #include "Event.h"
 
-#include "MoveToEvent.h"
-
 class SDLInterface {
 private:
 	static SDLInterface* mpInstance;

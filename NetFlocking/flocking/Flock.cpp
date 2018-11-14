@@ -194,3 +194,7 @@ void Flock::readFromBitstream(RakNet::Packet* packet) {
 		bsIn.Read(boidsList[iter].sumofNeighborsTheta);
 	}
 }
+
+void Flock::predict() {
+
+}

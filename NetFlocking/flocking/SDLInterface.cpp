@@ -123,12 +123,3 @@ void SDLInterface::drawCircle(int x, int y, int radius) {
 		drawLine(x1, y1, x2, y2);
 	}
 }
-
-void SDLInterface::addEvent(EVENT_TYPE eType) {
-	switch (eType) {
-	case MOVE_TO_EVENT:
-		MoveToEvent* mEvent = new MoveToEvent(100, 100);
-		EventManager::getInstance()->add(mEvent->getType(), mEvent);
-		break;
-	}
-}
