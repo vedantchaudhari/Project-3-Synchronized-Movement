@@ -19,19 +19,21 @@
 enum GameMessages
 {
 	DEFAULT_MESSAGE = ID_USER_PACKET_ENUM,
-	REQUEST_CLIENT_DATA_MSG
+	REQUEST_CLIENT_DATA_MSG,
 };
 
 #pragma pack(push, 1)
-struct GameMessageData
+struct BaseMessage
 {
+	unsigned int typeID;
 };
 #pragma pack(pop)
 
 #pragma pack(push, 1)
 struct ClientData
 {
-	int ID = INCOMING_CLIENTDATA;
+	unsigned int typeID;
+
 	Flock clientFlock;
 	RakNet::SystemAddress clientIP;
 	bool instantiated = false;

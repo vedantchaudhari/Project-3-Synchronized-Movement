@@ -43,6 +43,12 @@
     <Filter Include="Source Files\Event\Events">
       <UniqueIdentifier>{49a5e95c-9c1f-457f-b7b8-9c50224f2bbf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Networking">
+      <UniqueIdentifier>{95872789-e80b-4fba-aa6f-3f63209e774e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Networking">
+      <UniqueIdentifier>{81622779-e063-4e4b-a112-d0cf45f6fd7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Boid.cpp">
@@ -69,8 +75,8 @@
     <ClCompile Include="LinkedList.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
-    <ClCompile Include="MoveToEvent.cpp">
-      <Filter>Source Files\Event\Events</Filter>
+    <ClCompile Include="NetworkingInterface.cpp">
+      <Filter>Source Files\Networking</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -104,8 +110,8 @@
     <ClInclude Include="Thread.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
-    <ClInclude Include="MoveToEvent.h">
-      <Filter>Header Files\Event\Events</Filter>
+    <ClInclude Include="NetworkingInterface.h">
+      <Filter>Header Files\Networking</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
