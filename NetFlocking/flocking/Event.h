@@ -15,7 +15,7 @@
 enum EVENT_TYPE {
 	INVALID_TYPE,
 
-	MOVE_TO_EVENT,
+	FLOCK_STATE,
 };
 
 const std::string EVENT_NAMES[3] = {

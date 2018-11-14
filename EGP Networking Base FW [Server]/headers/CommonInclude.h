@@ -19,11 +19,6 @@
 enum GameMessages
 {
 	SETMODE_PUSH = ID_USER_PACKET_ENUM,
-	SETMODE_SHARE,
-	SETMODE_COUPLED,
-	DATA_PUSH,
-	DATA_SHARE,
-	DATA_COUPLED,
 	INCOMING_CLIENTDATA,
 	RECIEVE_FLOCK_DATA,
 	RECIEVE_FLOCK2_DATA,
@@ -35,7 +30,6 @@ enum GameMessages
 #pragma pack(push, 1)
 struct GameMessageData
 {
-	int ID = DATA_PUSH;
 };
 #pragma pack(pop)
 

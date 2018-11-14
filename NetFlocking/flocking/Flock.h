@@ -20,11 +20,16 @@
 #include "RakNet/DS_List.h"
 #include "RakNet/BitStream.h"
 
-// Bitstream
+// ****TODO:
+//			- DONE Add a timestamp to each flock which holds the last time it was updated via the server
+//			- Add an Event to hold the latest simulated flock by the server
+//			- 
+//			- 
 
 class Flock {
 private:
 	int count;
+	RakNet::Time lastUpdateTimeStamp;
 
 public:
 	//std::vector<Boid> boids;

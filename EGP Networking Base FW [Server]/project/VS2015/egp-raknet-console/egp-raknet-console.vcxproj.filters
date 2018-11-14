@@ -13,8 +13,17 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\boids">
+    <Filter Include="Header Files\Boids">
+      <UniqueIdentifier>{0837a13a-a10c-4f36-9f1b-7c4ad7530a11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Boids">
       <UniqueIdentifier>{65333364-0f09-44a8-b2df-ef81098a782e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems">
+      <UniqueIdentifier>{da4c2532-88e5-4446-9e33-5d795152ca4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Events">
+      <UniqueIdentifier>{0eceb48f-7b95-4bdf-9097-abe6d8d54158}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -22,27 +31,33 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\server boids\Boid.cpp">
-      <Filter>Source Files\boids</Filter>
+      <Filter>Source Files\Boids</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\source\server boids\Flock.cpp">
-      <Filter>Source Files\boids</Filter>
+      <Filter>Source Files\Boids</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\headers\CommonInclude.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\headers\Flock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\headers\Boid.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\headers\Define.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\headers\Boid.h">
+      <Filter>Header Files\Boids</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\headers\Flock.h">
+      <Filter>Header Files\Boids</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\headers\input.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="SendFlockState.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Header Files\Events</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

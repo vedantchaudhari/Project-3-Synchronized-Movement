@@ -28,7 +28,6 @@ int main(int const argc, char const *const *const argv)
 	//Begin Networking
 	RakNet::RakPeerInterface *peer = RakNet::RakPeerInterface::GetInstance();
 
-	
 	ClientData clients[2];
 	Flock coupledFlock((int)NUM_BOIDS * 2);
 
@@ -97,6 +96,7 @@ int main(int const argc, char const *const *const argv)
 					clients[0].clientIP = packet->systemAddress;
 					clients[0].instantiated = true;
 					printf("Client 1 connected \n");
+
 					ClientData temp;
 					temp.ID = GET_ORDER;
 					peer->Send((char*)&temp, sizeof(temp), HIGH_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, false);
@@ -109,6 +109,7 @@ int main(int const argc, char const *const *const argv)
 					clients[1].clientIP = packet->systemAddress;
 					clients[1].instantiated = true;
 					printf("Client 2 connected \n");
+
 					ClientData temp;
 					temp.clientIP = clients[0].clientIP;
 					temp.ID = GET_CLIENT_IP;
@@ -136,7 +137,8 @@ int main(int const argc, char const *const *const argv)
 
 			}
 			break;
-			//jack Malvey
+			//jack Malvey 
+			/*
 			case DATA_PUSH:
 			{
 				if (packet->systemAddress == clients[0].clientIP)
@@ -232,7 +234,7 @@ int main(int const argc, char const *const *const argv)
 					
 				}
 			}
-			break; 
+			break; */
 			case RECIEVE_FLOCK2_DATA:
 			{
 				RakNet::BitStream sendData;
