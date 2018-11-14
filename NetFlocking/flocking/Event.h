@@ -18,10 +18,6 @@ enum EVENT_TYPE {
 	FLOCK_STATE,
 };
 
-const std::string EVENT_NAMES[3] = {
-	"Move To Event",
-};
-
 class Event {
 private:
 	EVENT_TYPE mType;
@@ -33,6 +29,5 @@ public:
 
 	virtual void execute() = 0;
 
-	std::string getName() { return EVENT_NAMES[mType]; };
 	EVENT_TYPE getType() const { return mType; };
 };

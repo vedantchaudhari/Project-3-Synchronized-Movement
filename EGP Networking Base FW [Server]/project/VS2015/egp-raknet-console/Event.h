@@ -3,7 +3,7 @@
 enum EVENT_TYPE {
 	INVALID_TYPE,
 
-	SEND_FLOCK_STATE,
+	FLOCK_STATE_UPDATE,
 };
 
 class Event {

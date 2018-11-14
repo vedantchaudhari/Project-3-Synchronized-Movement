@@ -41,9 +41,9 @@ int main(int const argc, char const *const *const argv)
 	peer->SetTimeoutTime(999999, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
 	std::string placeHolder = "";
 	RakNet::Packet *packet;
+
 	while (1)
 	{
-
 		for (
 			packet = peer->Receive();
 			packet;
@@ -61,11 +61,10 @@ int main(int const argc, char const *const *const argv)
 			case ID_NEW_INCOMING_CONNECTION:
 			{
 				printf("A client has connected.\n");
+
 				GameMessageData gameMessage;
 				gameMessage.ID = INCOMING_CLIENTDATA;
 				peer->Send((char*)&gameMessage, sizeof(gameMessage), HIGH_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, false);
-
-
 			}
 			break;
 			case ID_REMOTE_NEW_INCOMING_CONNECTION:
@@ -85,17 +84,17 @@ int main(int const argc, char const *const *const argv)
 			//Jack
 			case INCOMING_CLIENTDATA:
 			{
-				//add client data to client list
-				printf("incoming client data: \n");
+				std::cout << "SERVER: Detected incoming client data" << std::endl;
 				
 				ClientData* gameMessage = (ClientData*)packet->data;
+
 				if (clients[0].instantiated == false)
 				{
-					//clients[0] = gameMessage;
 					clients[0].clientFlock.readFromBitstream(packet);
 					clients[0].clientIP = packet->systemAddress;
 					clients[0].instantiated = true;
-					printf("Client 1 connected \n");
+
+					std::cout << "SERVER: Client 1 has connected" << std::endl;
 
 					ClientData temp;
 					temp.ID = GET_ORDER;
@@ -104,11 +103,11 @@ int main(int const argc, char const *const *const argv)
 				}
 				else if (clients[1].instantiated == false)
 				{
-					//clients[1] = *gameMessage;
 					clients[1].clientFlock.readFromBitstream(packet);
 					clients[1].clientIP = packet->systemAddress;
 					clients[1].instantiated = true;
-					printf("Client 2 connected \n");
+					
+					std::cout << "SERVER: Client 2 has connected" << std::endl;
 
 					ClientData temp;
 					temp.clientIP = clients[0].clientIP;
@@ -129,12 +128,6 @@ int main(int const argc, char const *const *const argv)
 				{
 					//update flocks from incoming data
 				}
-
-				//send a request to the clients to send their data
-				//ClientData getData;
-				//getData.ID = INCOMING_CLIENTDATA;
-				//peer->Send((char*)&getData, sizeof(getData), HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
-
 			}
 			break;
 			//jack Malvey 

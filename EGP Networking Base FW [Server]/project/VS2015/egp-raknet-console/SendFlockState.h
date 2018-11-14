@@ -17,14 +17,14 @@
 #include "../headers/Boid.h"
 #include "../headers/Flock.h"
 
-class SendFlockState : public Event {
+class FlockStateUpdate : public Event {
 private:
 	EVENT_TYPE mType;
 	Flock flockOne;
 	Flock flockTwo;
 
 public:
-	SendFlockState() : mType(SEND_FLOCK_STATE) {};
+	FlockStateUpdate() : mType(FLOCK_STATE_UPDATE) {};
 
 	virtual void execute();
 };

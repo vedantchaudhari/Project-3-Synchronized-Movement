@@ -61,11 +61,6 @@ int main(int argc, char *argv[]) {
 	RakNet::SystemAddress otherClientAddress = RakNet::UNASSIGNED_SYSTEM_ADDRESS;
 	bool isClient1 = false;
 
-	//std::cout << "Flock Size: " << sizeof(Flock) << "\n";
-
-	//network modes
-	int dataMode = DATA_PUSH;
-
 	peer->Startup(1, &sd, 1);
 
 	//set up client connection to server
@@ -80,8 +75,6 @@ int main(int argc, char *argv[]) {
 
 	//big timeout timer
 	peer->SetTimeoutTime(999999, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
-
-
 	
 	while (SDLInterface::getInstance()->isExit == false) {
 		
@@ -94,21 +87,6 @@ int main(int argc, char *argv[]) {
 		{
 			switch (packet->data[0])
 			{
-			case SETMODE_PUSH:
-			{
-				dataMode = PUSH_MODE;
-			}
-			break;
-			case SETMODE_SHARE:
-			{
-				dataMode = PUSH_MODE;
-			}
-			break;
-			case SETMODE_COUPLED:
-			{
-				dataMode = COUPLED_MODE;
-			}
-			break;
 			case SEND_CLIENTDATA:
 			{
 				std::cout << "Sent client flocking data to server" << std::endl;
