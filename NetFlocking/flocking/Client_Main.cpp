@@ -29,6 +29,7 @@
 #include "../../DevSDKs/include/RakNet/MessageIdentifiers.h"
 #include "../../DevSDKs/include/RakNet/BitStream.h"
 #include "../../DevSDKs/include/RakNet/RakNetTypes.h"
+#include "../../DevSDKs/include/RakNet/DS_List.h"
 #include <stdio.h>
 
 #include "ServerDefine.h"
@@ -41,10 +42,54 @@ void update() {
 	SDLInterface::getInstance()->setColor(255, 255, 255, 255);
 }
 
+void prediction(Flock oldFlock, Flock flockPrediction, Uint32 deltaTime) {
+	// PSEUDO CODE FOR FORMULA
+	// predicted_position = old_position + (old_velocity * elapsedSeconds) + (0.5 * old_acceleration * (elapsedSeconds^2))
+	// WITHOUT ACCELERATION
+	// predicted_position = old_position + (old_velocity * elapsedSeconds)
+	for (int iter = 0; iter < oldFlock.getCount(); iter++) {
+		flockPrediction.boidsList[iter].pos[0] = oldFlock.boidsList[iter].pos[0] +
+			(oldFlock.boidsList[iter].velocity[0] * deltaTime);
+		flockPrediction.boidsList[iter].pos[1] = oldFlock.boidsList[iter].pos[1] +
+			(oldFlock.boidsList[iter].velocity[1] * deltaTime);
+	}
+
+	// TODO
+	// Once u calculated predicted positions, blend the old state with the prediction
+	// Once u receive a new packet from the server, correct the position of the boids
+}
+
+// percentCompleted shoudl be between [0, 1] (want to come up with a value in between the time steps of the server)
+void blend(Flock oldFlock, Flock flockPrediction, float percentCompleted) { // old & new
+	Flock finalFlock = Flock(NUM_BOIDS);
+
+	for (int iter = 0; iter < oldFlock.getCount(); iter++) {
+		float percentageToOld = 1.0 - percentCompleted;
+
+		finalFlock.boidsList[iter].pos[0] = (percentageToOld * oldFlock.boidsList[iter].pos[0]) +
+			(percentCompleted * flockPrediction.boidsList[iter].pos[0]);
+		finalFlock.boidsList[iter].pos[1] = (percentageToOld * oldFlock.boidsList[iter].pos[1]) +
+			(percentCompleted * flockPrediction.boidsList[iter].pos[1]);
+
+		finalFlock.boidsList[iter].velocity[0] = (percentageToOld * oldFlock.boidsList[iter].velocity[0]) +
+			(percentCompleted * flockPrediction.boidsList[iter].velocity[0]);
+		finalFlock.boidsList[iter].velocity[1] = (percentageToOld * oldFlock.boidsList[iter].velocity[1]) +
+			(percentCompleted * flockPrediction.boidsList[iter].velocity[1]);
+	}
+
+	for (int iter = 0; iter < oldFlock.getCount(); iter++) {
+		oldFlock.boidsList = finalFlock.boidsList;
+	}
+}
+
 int main(int argc, char *argv[]) {
 	SDLInterface::getInstance()->init(WIDTH, HEIGHT, TITLE);
+
 	Flock flock = Flock(NUM_BOIDS);
-	Flock flock2 = Flock(NUM_BOIDS);
+
+	Flock flock2 = Flock(NUM_BOIDS);	// Timestamped server update
+	Flock flock2Prediction = Flock(NUM_BOIDS);
+
 	Flock flockCouple = Flock(NUM_BOIDS * 2);
 
 	Uint32 iTime = SDL_GetTicks();
@@ -79,11 +124,7 @@ int main(int argc, char *argv[]) {
 	while (SDLInterface::getInstance()->isExit == false) {
 		
 		//recieve network packets
-		for (
-			packet = peer->Receive();
-			packet; 
-			peer->DeallocatePacket(packet), packet = peer->Receive()
-			)
+		for (packet = peer->Receive(); packet; peer->DeallocatePacket(packet), packet = peer->Receive())
 		{
 			switch (packet->data[0])
 			{
@@ -101,58 +142,9 @@ int main(int argc, char *argv[]) {
 
 			}
 			break;
-			case RECIEVE_FLOCK_DATA:
-			{
-				//std::cout << "New Flock Data Recieved\n";
-				flock.readFromBitstream(packet);
-			}
-			break;
-			case RECIEVE_FLOCK2_DATA:
-			{
-				//std::cout << "New Flock Data Recieved\n";
-				twoFlocks = true;
-				flock2.readFromBitstream(packet);
-				if (dataMode == COUPLED_MODE && packet->systemAddress!= otherClientAddress)
-				{
-					if (isClient1)
-					{
-						for (int i = 0; i < NUM_BOIDS; i++)
-						{
-							flockCouple.boidsList[i] = flock.boidsList[i];
-						}
-					}
-					else
-					{
-						for (int i = NUM_BOIDS; i < ((int)NUM_BOIDS * 2); i++)
-						{
-							flockCouple.boidsList[i] = flock.boidsList[i - NUM_BOIDS];
-						}
-					}
-					//now that the full coupled Boids list is available, we can send it!
-					coupleReadyToSend = true;
-				}
-			}
-			break; 
-			case RECIEVE_COUPLEDFLOCK_DATA:
-			{
-				//std::cout << "New Flock Data Recieved\n";
-				flockCouple.readFromBitstream(packet);
-				flockCouple.update();
-				if (isClient1)
-				{
-					for (int i = 0; i < NUM_BOIDS; i++)
-					{
-						flock.boidsList[i] = flockCouple.boidsList[i];
-					}
-				}
-				else
-				{
-					for (int  i = NUM_BOIDS; i < ((int)NUM_BOIDS * 2); i++)
-					{
-						flock.boidsList[i - NUM_BOIDS] = flockCouple.boidsList[i];
-					}
-				}
-			}
+			case FLOCK_STATE_UPDATE:
+				// update other clients flock positions with what u receiver from the server
+				// Call te blending function
 			break;
 			case GET_CLIENT_IP:
 			{

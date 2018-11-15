@@ -196,5 +196,10 @@ void Flock::readFromBitstream(RakNet::Packet* packet) {
 }
 
 void Flock::predict() {
+	// PSEUDO CODE FOR FORMULA
+	// predicted_position = old_position + (old_velocity * elapsedSeconds) + (0.5 * old_acceleration * (elapsedSeconds^2))
 
+	// Once u calculated predicted positions, blend the old state with the prediction
+
+	// Once u receive a new packet from the server, correct the position of the boids
 }

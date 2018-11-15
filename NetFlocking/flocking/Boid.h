@@ -20,8 +20,6 @@
 #include "SDLInterface.h"
 
 class Boid {
-private:
-
 public:
 	Boid();
 	Boid(float x, float y);

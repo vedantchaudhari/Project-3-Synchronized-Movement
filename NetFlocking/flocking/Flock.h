@@ -29,9 +29,10 @@
 class Flock {
 private:
 	int count;
-	RakNet::Time lastUpdateTimeStamp;
 
 public:
+	RakNet::Time lastUpdateTimeStamp;
+
 	//std::vector<Boid> boids;
 	DataStructures::List<Boid> boidsList;
 	Flock();
@@ -51,6 +52,8 @@ public:
 
 	// Client function
 	void predict();
+
+	inline int getCount() { return count; };
 
 	/*Flock operator=(const Flock& b)
 	{
