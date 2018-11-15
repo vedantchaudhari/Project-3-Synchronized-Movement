@@ -27,6 +27,7 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="Flock.h" />
+    <ClInclude Include="FlockStateUpdate.h" />
     <ClInclude Include="InputInterface.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="NetworkingInterface.h" />

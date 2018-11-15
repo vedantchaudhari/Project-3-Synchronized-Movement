@@ -173,7 +173,7 @@ void Flock::readFromBitstream(RakNet::Packet* packet) {
 	unsigned char typeID;
 
 	bsIn.Read(useTimeStamp);
-	bsIn.Read(updateTimeStamp);
+	bsIn.Read(lastUpdateTimeStamp);	// Load timestamp into flock
 	bsIn.Read(typeID);
 
 	for (int iter = 0; iter < count; iter++) {

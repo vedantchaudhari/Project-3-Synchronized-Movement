@@ -113,5 +113,8 @@
     <ClInclude Include="NetworkingInterface.h">
       <Filter>Header Files\Networking</Filter>
     </ClInclude>
+    <ClInclude Include="FlockStateUpdate.h">
+      <Filter>Header Files\Event\Events</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
