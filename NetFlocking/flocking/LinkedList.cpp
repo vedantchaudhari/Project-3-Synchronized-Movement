@@ -177,7 +177,7 @@ int LinkedList::dataCmp(int value0, int value1)
 
 void LinkedList::displayNode(Node *node)
 {
-	std::cout << node->type << "\t" << node->event->getName();
+//	std::cout << node->type << "\t" << node->event->getName();
 	return;
 }
 

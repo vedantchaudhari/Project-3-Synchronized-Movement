@@ -45,7 +45,7 @@ public:
 
 	void update();
 	void render();
-
+	void setColor();
 	// Networking Function
 	void writeToBitstream(RakNet::BitStream& bsOut, unsigned char typeID);
 	void readFromBitstream(RakNet::Packet* packet);

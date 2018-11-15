@@ -58,7 +58,10 @@ void Boid::update() {
 }
 
 void Boid::render() {
-	SDLInterface::getInstance()->setColor(255, 255, 255, 255);
+	if (color == 1)
+		SDLInterface::getInstance()->setColor(255, 0, 0, 255);
+	else
+		SDLInterface::getInstance()->setColor(255, 255, 255, 255);
 	SDLInterface::getInstance()->drawTriangle(pos[0], pos[1], BOID_WIDTH, BOID_HEIGHT, theta);
 
 	if (DRAW_RADIUS_FLAG) {

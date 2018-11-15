@@ -37,6 +37,12 @@ float Flock::getDistance(Boid boidA, Boid boidB) {
 		+ (boidB.pos[1] - boidA.pos[1]) * (boidB.pos[1] - boidA.pos[1]));
 }
 
+void Flock::setColor()
+{
+	for (int iter = 0; iter < count; iter++)
+		boidsList[iter].color = 1;
+}
+
 void Flock::update() {
 	for (int iter = 0; iter < count; iter++)
 		boidsList[iter].clearBuffers();

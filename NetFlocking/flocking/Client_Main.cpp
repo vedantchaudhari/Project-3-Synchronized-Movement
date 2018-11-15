@@ -24,12 +24,12 @@
 #include "Flock.h"
 #include "SDLInterface.h"
 #include "InputInterface.h"
-
+/*
 #include "../../DevSDKs/include/RakNet/RakPeerInterface.h"
 #include "../../DevSDKs/include/RakNet/MessageIdentifiers.h"
 #include "../../DevSDKs/include/RakNet/BitStream.h"
 #include "../../DevSDKs/include/RakNet/RakNetTypes.h"
-#include "../../DevSDKs/include/RakNet/DS_List.h"
+#include "../../DevSDKs/include/RakNet/DS_List.h"*/
 #include <stdio.h>
 
 #include "ServerDefine.h"
@@ -120,9 +120,9 @@ int main(int argc, char *argv[]) {
 
 	//big timeout timer
 	peer->SetTimeoutTime(999999, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
-	
+
 	while (SDLInterface::getInstance()->isExit == false) {
-		
+
 		//recieve network packets
 		for (packet = peer->Receive(); packet; peer->DeallocatePacket(packet), packet = peer->Receive())
 		{
@@ -134,8 +134,8 @@ int main(int argc, char *argv[]) {
 
 				RakNet::BitStream sendData;
 				flock.update();
-				flock.writeToBitstream(sendData,SEND_CLIENTDATA);
-				
+				flock.writeToBitstream(sendData, SEND_CLIENTDATA);
+
 				peer->Send(&sendData, HIGH_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, false);
 			}
 			break;
@@ -159,13 +159,14 @@ int main(int argc, char *argv[]) {
 				otherClientAddress = temp->clientIP;
 			}
 			break;
+			}
+
+			iTime2 = SDL_GetTicks();
+
+			update();
 		}
 
-		iTime2 = SDL_GetTicks();
-
-		update();
+		SDLInterface::getInstance()->exit();
+		return 0;
 	}
-	
-	SDLInterface::getInstance()->exit();
-	return 0;
 }

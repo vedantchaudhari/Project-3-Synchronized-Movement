@@ -24,6 +24,7 @@ public:
 	Boid();
 	Boid(float x, float y);
 
+	int color = 0;
 	int numOfNeighbors = 0;
 
 	// Vector 2 Data
