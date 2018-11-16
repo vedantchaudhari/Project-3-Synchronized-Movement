@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{58071a7d-cbb0-4abd-9790-6b2e658844e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{30ffa034-0511-4b02-96bb-ac319241f08f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Boids">
+      <UniqueIdentifier>{473169a8-96e1-4412-ac2e-391661ee95bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Boids">
+      <UniqueIdentifier>{fc1e3008-2ab7-4b6a-aa2f-6fcea7719c5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{a27988fb-d0a5-4250-972f-af65e8ca4292}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{c4ae7624-e121-4a43-87ce-ac08c1110b47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Input">
+      <UniqueIdentifier>{b129ae12-ccbc-4b61-b385-03d199119761}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{601306d5-fe2c-486c-95ae-5d6188b23f5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Events">
+      <UniqueIdentifier>{e2f6b544-0ca5-46d7-8beb-4f11c5b64141}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Events">
+      <UniqueIdentifier>{d08ee873-fb9d-479f-8db7-d20fbbe6d5fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Util">
+      <UniqueIdentifier>{8ddcd948-ea01-4ea8-a261-3fa5a07fa4bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Util">
+      <UniqueIdentifier>{7b57d83a-2c54-4914-9b10-ea9c0965c866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Events\Custom_Events">
+      <UniqueIdentifier>{7cafe350-a784-4ee4-aecb-d3a457bd0727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Networking">
+      <UniqueIdentifier>{8a432936-97ad-4173-8838-1881e2097d78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Networking">
+      <UniqueIdentifier>{427abc1b-a357-4904-a889-0e949a1478df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Events\Custom_Events">
+      <UniqueIdentifier>{caa81909-c67b-4c78-972e-9eb2b0f244f6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Boid.cpp">
+      <Filter>Source Files\Boids</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLInterface.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Flock.cpp">
+      <Filter>Source Files\Boids</Filter>
+    </ClCompile>
+    <ClCompile Include="Client_Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputInterface.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread.c">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedList.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Source Files\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkingInterface.cpp">
+      <Filter>Source Files\Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="FlockStateUpdate.cpp">
+      <Filter>Source Files\Events\Custom_Events</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Flock.h">
+      <Filter>Header Files\Boids</Filter>
+    </ClInclude>
+    <ClInclude Include="Boid.h">
+      <Filter>Header Files\Boids</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLInterface.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputInterface.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerDefine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkingInterface.h">
+      <Filter>Header Files\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="FlockStateUpdate.h">
+      <Filter>Header Files\Events\Custom_Events</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
