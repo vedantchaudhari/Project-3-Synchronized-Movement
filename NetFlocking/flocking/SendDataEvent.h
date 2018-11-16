@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 
 // Certificate of Authenticity
 //
@@ -22,16 +23,20 @@
 #include "../../DevSDKs/include/RakNet/DS_List.h"
 
 #include "NetworkingInterface.h"
-class FlockStateUpdateEvent : public Event {
+
+class SendDataEvent : public Event {
 private:
 	EVENT_TYPE mType;
-	Flock enemyFlock;
-
+	RakNet::BitStream data;
 public:
-	FlockStateUpdateEvent(Flock flock) : mType(FLOCK_STATE_UPDATE_EVENT), enemyFlock(flock) {};
+	SendDataEvent(RakNet::BitStream &streamToSend) : mType(SEND_DATA_EVENT)
+	{
+	}
 
 	//virtual void execute() override;
 	virtual void execute() {
-		gpNetworking->SendFlock(enemyFlock);
+		RakNet::BitStream sendData;
+		;
+		flock.writeToBitstream(sendData, SEND_CLIENTDATA);
 	};
 };

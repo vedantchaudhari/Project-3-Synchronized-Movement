@@ -12,6 +12,8 @@
 #include "RakNet/BitStream.h"
 #include "RakNet/GetTime.h"
 
+#include"NetworkingInterface.h"
+
 #include "Define.h"
 #include "Flock.h"
 
@@ -19,6 +21,7 @@ enum GameMessages
 {
 	DEFAULT_MESSAGE = ID_USER_PACKET_ENUM,
 	REQUEST_CLIENT_DATA_MSG,
+
 	FLOCK_STATE_UPDATE_MSG,
 	REQUEST_CLIENT_IP_MSG,
 	SEND_CLIENT_IP_MSG,
@@ -26,9 +29,11 @@ enum GameMessages
 	SEND_CLIENTDATA,
 	RECIEVE_FLOCK_DATA,
 	RECIEVE_FLOCK2_DATA,
-	RECIEVE_COUPLEDFLOCK_DATA,
 	GET_ORDER,
 };
+
+
+static NetworkingInterface *gpNetworking = new NetworkingInterface();
 
 #pragma pack(push, 1)
 struct BaseMessage {

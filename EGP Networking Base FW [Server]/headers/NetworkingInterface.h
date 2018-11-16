@@ -18,7 +18,6 @@
 #include "RakNet/BitStream.h"
 #include "RakNet/GetTime.h"
 
-//
 #include "Flock.h"
 
 #include "Thread.h"
@@ -96,6 +95,7 @@ public:
 	mPortIn = 60000;
 
 	mNetworkThreadAllowed = false;
+
 }
 
 /*
@@ -126,7 +126,11 @@ API for shutting down networking
 	1	success
 	0	failure
 */
-//virtual int ShutdownNetworking();
+virtual int ShutdownNetworking()
+{
+	TerminatePeer();
+	return 1;
+}
 
 /*
 API for connection, *IF ALLOWED* (determined at startup)

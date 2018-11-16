@@ -16,6 +16,7 @@ enum EVENT_TYPE {
 	INVALID_TYPE,
 
 	FLOCK_STATE_UPDATE_EVENT,
+	SEND_DATA_EVENT,
 };
 
 class Event {

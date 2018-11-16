@@ -13,7 +13,7 @@
 */
 #include "../headers/CommonInclude.h"
 #include "../headers/input.h"
-
+#include "../project/VS2015/egp-raknet-console/globals.h"
 
 // entry function
 int main(int const argc, char const *const *const argv)
@@ -22,13 +22,11 @@ int main(int const argc, char const *const *const argv)
 	unsigned short serverPort = 60000;
 	const unsigned int MAX_CLIENTS = 3;
 
-
-	GameMessageData serverName;
-
+	/*
 	//Begin Networking
 	RakNet::RakPeerInterface *peer = RakNet::RakPeerInterface::GetInstance();
 
-	ClientData clients[2];
+	
 	Flock coupledFlock((int)NUM_BOIDS * 2);
 
 	RakNet::SocketDescriptor sd(serverPort, 0);
@@ -36,18 +34,26 @@ int main(int const argc, char const *const *const argv)
 
 	//connect client and server
 	printf("Starting the server @ %s.\n", peer->GetLocalIP(2));
-	peer->SetMaximumIncomingConnections(MAX_CLIENTS);
+	*/
+	gpNetworking->mpPeer->SetMaximumIncomingConnections(MAX_CLIENTS);
 
-	peer->SetTimeoutTime(999999, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
-	std::string placeHolder = "";
+	gpNetworking->mpPeer->SetTimeoutTime(999999, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
+	
+	
+
+
+	gpNetworking->StartupNetworking(true, MAX_CLIENTS, 1, false);
+
+
 	RakNet::Packet *packet;
-
+	ClientData clients[2];
+	std::string placeHolder = "";
 	while (1)
 	{
 		for (
-			packet = peer->Receive();
+			packet = gpNetworking->mpPeer->Receive();
 			packet;
-			peer->DeallocatePacket(packet), packet = peer->Receive()
+			gpNetworking->mpPeer->DeallocatePacket(packet), packet = gpNetworking->mpPeer->Receive()
 			)
 		{
 			switch (packet->data[0])
@@ -62,9 +68,9 @@ int main(int const argc, char const *const *const argv)
 			{
 				printf("A client has connected.\n");
 
-				GameMessageData gameMessage;
-				gameMessage.ID = INCOMING_CLIENTDATA;
-				peer->Send((char*)&gameMessage, sizeof(gameMessage), HIGH_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, false);
+				BaseMessage gameMessage;
+				gameMessage.typeID = INCOMING_CLIENTDATA;
+				gpNetworking->mpPeer->Send((char*)&gameMessage, sizeof(gameMessage), HIGH_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, false);
 			}
 			break;
 			case ID_REMOTE_NEW_INCOMING_CONNECTION:
@@ -97,8 +103,8 @@ int main(int const argc, char const *const *const argv)
 					std::cout << "SERVER: Client 1 has connected" << std::endl;
 
 					ClientData temp;
-					temp.ID = GET_ORDER;
-					peer->Send((char*)&temp, sizeof(temp), HIGH_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, false);
+					temp.typeID = GET_ORDER;
+					gpNetworking->mpPeer->Send((char*)&temp, sizeof(temp), HIGH_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, false);
 
 				}
 				else if (clients[1].instantiated == false)
@@ -111,11 +117,11 @@ int main(int const argc, char const *const *const argv)
 
 					ClientData temp;
 					temp.clientIP = clients[0].clientIP;
-					temp.ID = GET_CLIENT_IP;
-					peer->Send((char*)&temp, sizeof(temp), HIGH_PRIORITY, RELIABLE_ORDERED, 0, clients[1].clientIP, false);
+					temp.typeID = REQUEST_CLIENT_IP_MSG;
+					gpNetworking->mpPeer->Send((char*)&temp, sizeof(temp), HIGH_PRIORITY, RELIABLE_ORDERED, 0, clients[1].clientIP, false);
 
 					temp.clientIP = clients[1].clientIP;
-					peer->Send((char*)&temp, sizeof(temp), HIGH_PRIORITY, RELIABLE_ORDERED, 0, clients[0].clientIP, false);
+					gpNetworking->mpPeer->Send((char*)&temp, sizeof(temp), HIGH_PRIORITY, RELIABLE_ORDERED, 0, clients[0].clientIP, false);
 
 				}
 
@@ -235,13 +241,13 @@ int main(int const argc, char const *const *const argv)
 				clients[0].clientFlock.writeToBitstream(sendData, RECIEVE_FLOCK2_DATA);
 				if (packet->systemAddress == clients[0].clientIP)
 				{
-					peer->Send(&sendData, HIGH_PRIORITY, RELIABLE_ORDERED, 0, clients[1].clientIP, false);
+					gpNetworking->mpPeer->Send(&sendData, HIGH_PRIORITY, RELIABLE_ORDERED, 0, clients[1].clientIP, false);
 
 				}
 				else if (packet->systemAddress == clients[1].clientIP)
 				{
 					
-					peer->Send(&sendData, HIGH_PRIORITY, RELIABLE_ORDERED, 0, clients[0].clientIP, false);
+					gpNetworking->mpPeer->Send(&sendData, HIGH_PRIORITY, RELIABLE_ORDERED, 0, clients[0].clientIP, false);
 				}
 			}
 				break;
@@ -250,11 +256,11 @@ int main(int const argc, char const *const *const argv)
 				break;
 			}
 		}
-		switch (getInput(placeHolder))
-		{
+		//switch (getInput(placeHolder))
+		//{
 			//Public Messages
 
-		case PUSH:
+		/*case PUSH:
 		{
 			ClientData temp;
 			temp.ID = SETMODE_PUSH;
@@ -280,11 +286,12 @@ int main(int const argc, char const *const *const argv)
 		break;
 		default:
 			break;
-		}
+		}*/
 	}
 		// shut down networking by destroying peer interface instance
-		RakNet::RakPeerInterface::DestroyInstance(peer);
-
+		//RakNet::RakPeerInterface::DestroyInstance(peer);
+	gpNetworking->ShutdownNetworking();
+	delete gpNetworking;
 		// exit
 		printf("\n\n");
 		system("pause");

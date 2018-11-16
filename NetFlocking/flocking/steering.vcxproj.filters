@@ -116,5 +116,8 @@
     <ClInclude Include="FlockStateUpdate.h">
       <Filter>Header Files\Event\Events</Filter>
     </ClInclude>
+    <ClInclude Include="SendDataEvent.h">
+      <Filter>Header Files\Event\Events</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -33,4 +33,5 @@
 
 #define PI 3.1415
 #define TICK 10
+#define LATENT_TICK 100
 #define TURN_INCREMENT PI/180

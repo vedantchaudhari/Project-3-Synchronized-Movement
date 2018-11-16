@@ -95,19 +95,22 @@ int main(int argc, char *argv[]) {
 	Uint32 iTime = SDL_GetTicks();
 	Uint32 iTime2 = 0;
 
+	bool canSend = false;
 	//networking vars
 	RakNet::Packet *packet;
-	RakNet::RakPeerInterface *peer = RakNet::RakPeerInterface::GetInstance();
+	//RakNet::RakPeerInterface *peer = RakNet::RakPeerInterface::GetInstance();
 	const short SERVERPORT = 60000;
 	char str[512];
-	RakNet::SocketDescriptor sd;
+	//RakNet::SocketDescriptor sd;
 	bool twoFlocks = false;
 	bool coupleReadyToSend = false;
 	RakNet::SystemAddress otherClientAddress = RakNet::UNASSIGNED_SYSTEM_ADDRESS;
 	bool isClient1 = false;
 
-	peer->Startup(1, &sd, 1);
-
+	gpNetworking->StartupNetworking(true,1,1,false);
+	
+	//peer->Startup(1, &sd, 1);
+	//gpNetworking->StartupNetworking(1, &sd, 1, 0);
 	//set up client connection to server
 	printf("Enter server IP\n");
 	fgets(str, 512, stdin);
@@ -116,57 +119,78 @@ int main(int argc, char *argv[]) {
 	}
 
 	system("cls");
-	peer->Connect(str, SERVERPORT, 0, 0);
+	gpNetworking->Connect(str, SERVERPORT);
+	
+	//peer->Connect(str, SERVERPORT, 0, 0);
 
 	//big timeout timer
-	peer->SetTimeoutTime(999999, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
+	//peer->SetTimeoutTime(999999, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
+	
+	
 
 	while (SDLInterface::getInstance()->isExit == false) {
-
-		//recieve network packets
-		for (packet = peer->Receive(); packet; peer->DeallocatePacket(packet), packet = peer->Receive())
-		{
-			switch (packet->data[0])
+		update();
+		flock.update();
+		/*
+			//recieve network packets
+			for (packet = gpNetworking->mpPeer->Receive(); packet; gpNetworking->mpPeer->DeallocatePacket(packet), packet = gpNetworking->mpPeer->Receive())
 			{
-			case REQUEST_CLIENT_DATA_MSG:
-			{
-				std::cout << "CLIENT: Sending client flocking data to server" << std::endl;
+				switch (packet->data[0])
+				{
+				case REQUEST_CLIENT_DATA_MSG:
+				{
+					std::cout << "CLIENT: Sending client flocking data to server" << std::endl;
 
-				RakNet::BitStream sendData;
-				flock.update();
-				flock.writeToBitstream(sendData, SEND_CLIENTDATA);
+					//RakNet::BitStream sendData;
+					flock.update();
+					//flock.writeToBitstream(sendData, SEND_CLIENTDATA);
+					gpNetworking->SendFlock(flock);
+					//eer->Send(&sendData, HIGH_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, false);
 
-				peer->Send(&sendData, HIGH_PRIORITY, RELIABLE_ORDERED, 0, packet->systemAddress, false);
-			}
-			break;
-			case FLOCK_STATE_UPDATE_MSG:	// Sent by server, processed by client
-			{
-				// update other clients flock positions with what u receiver from the server
-				// Call te blending function
-				std::cout << "CLIENT: Receiving state update from server" << std::endl;
-				// Create event and add to queue
-				Flock recFlock = Flock(NUM_BOIDS);
-				recFlock.readFromBitstream(packet);
-				FlockStateUpdate* newMsg = new FlockStateUpdate(recFlock);
-				EventManager::getInstance()->add(FLOCK_STATE_UPDATE_EVENT, newMsg);
-			}
-			break;
-			case REQUEST_CLIENT_IP_MSG:
-			{
-				std::cout << "Client IP Received" << std::endl;
+				}
+				break;
+				case FLOCK_STATE_UPDATE_MSG:	// Sent by server, processed by client
+				{
+					// update other clients flock positions with what u receiver from the server
+					// Call te blending function
+					std::cout << "CLIENT: Receiving state update from server" << std::endl;
+					// Create event and add to queue
+					Flock recFlock = Flock(NUM_BOIDS);
+					recFlock.readFromBitstream(packet);
+					Event* newMsg = new FlockStateUpdateEvent(recFlock);
+					EventManager::getInstance()->add(FLOCK_STATE_UPDATE_EVENT, newMsg);
+				}
+				break;
+				case REQUEST_CLIENT_IP_MSG:
+				{
+					std::cout << "Client IP Received" << std::endl;
 
-				ClientIPData *temp = ((ClientIPData*)packet->data);
-				otherClientAddress = temp->clientIP;
-			}
-			break;
-			}
-
+					ClientIPData *temp = ((ClientIPData*)packet->data);
+					otherClientAddress = temp->clientIP;
+				}
+				break;
+				case SEND_CLIENTDATA:
+				{
+					Event* newMsg = new FlockStateUpdateEvent(flock);
+					EventManager::getInstance()->add(FLOCK_STATE_UPDATE_EVENT, newMsg);
+				}
+				break;
+				}
+			*//*
 			iTime2 = SDL_GetTicks();
-
-			update();
+			if (iTime2 - iTime >= LATENT_TICK) {
+				iTime = SDL_GetTicks();	
+				canSend = true;
+			}
+			if (canSend)
+			{
+				EventManager::getInstance()->execute();
+				canSend = false;
+			}
+			*/
+			flock.render();
 		}
-
+	
 		SDLInterface::getInstance()->exit();
 		return 0;
 	}
-}

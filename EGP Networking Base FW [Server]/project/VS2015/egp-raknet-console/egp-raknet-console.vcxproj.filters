@@ -25,6 +25,12 @@
     <Filter Include="Header Files\Events">
       <UniqueIdentifier>{0eceb48f-7b95-4bdf-9097-abe6d8d54158}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Networking">
+      <UniqueIdentifier>{6e01e859-42b1-4ccb-aaea-e7c9df2735d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Networking">
+      <UniqueIdentifier>{b06fa740-8b85-417b-b747-9ba8dcb6f36f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\egp-raknet-console\egp-raknet-console-main.cpp">
@@ -35,6 +41,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\source\server boids\Flock.cpp">
       <Filter>Source Files\Boids</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\egp-raknet-console\NetworkingInterface.cpp">
+      <Filter>Source Files\Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\egp-raknet-console\Thread.c">
+      <Filter>Source Files\Networking</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +70,15 @@
     </ClInclude>
     <ClInclude Include="Event.h">
       <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\headers\NetworkingInterface.h">
+      <Filter>Header Files\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\headers\Thread.h">
+      <Filter>Header Files\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="globals.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -11,8 +11,7 @@
 // and provide copies to other academic staff, and/or communicate a copy of this project to a plagiarism 
 // - checking service, which may retain a copy of the project on its database.
 
-#include "NetworkingInterface.h"
-#include "ServerDefine.h"
+#include "../headers/NetworkingInterface.h"
 // -----------------------------------------------------------------------------------------------------
 /* INTERNAL UTILITIES */
 
@@ -85,7 +84,7 @@ int NetworkingInterface::ProcessAllPackets() const {
 void NetworkingInterface::SendFlock(Flock sendFlock)
 {
 	RakNet::BitStream toSend;
-	sendFlock.writeToBitstream(toSend, SEND_CLIENTDATA);
+	sendFlock.writeToBitstream(toSend, SEND_DATA);
 	mpPeer->Send(&toSend, HIGH_PRIORITY, RELIABLE_ORDERED, 0, mServerIP, false);
 }
 // -----------------------------------------------------------------------------------------------------
